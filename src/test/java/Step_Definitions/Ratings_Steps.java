@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.sql.SQLOutput;
+
 import static Pages.Android.Ratings_Page.*;
 
 import static Hooks.Base_Class.driver;
@@ -46,11 +48,20 @@ public class Ratings_Steps {
     public void userShouldSeeTheRatingsForAllDemographics() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(allages_all_css)));
 
+        //Assert that all other demographic elements are not null and are displayed
+        //Iterate one by one to assert all items in list
 
-        //Assert the element (All Ages & All) is displayed and the text inside element is not null
-        Assert.assertTrue(get_allages_all_css().isDisplayed());
-        String all_ages_all = Ratings_Page.get_allages_all_css().getText();
-        Assert.assertNotNull(all_ages_all);
+        for(int i=0; i<get_demographics_object_css().size(); i++){
+
+            Assert.assertTrue(get_demographics_object_css().get(i).isDisplayed()); //All elements in this list are displayed
+
+            //Assertion to check that all elements have rating values which are not null
+            String rating_of_each_element = get_demographics_object_css().get(i).getText();
+            Assert.assertNotNull(rating_of_each_element);
+
+        }
+
+
 
     }
 }
