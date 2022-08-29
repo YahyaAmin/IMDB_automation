@@ -62,7 +62,7 @@ Feature: Advanced Search Tests
     Then User should be able to see the list of movies for that rating between "5.5" and "7.2"
 
 
-    
+
 
 
 
