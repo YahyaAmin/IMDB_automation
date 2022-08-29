@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="welteq" />
+        <module name="untitled" />
+        <module name="KAMELPAY_FINAL" />
+        <module name="Hrcms" />
+        <module name="Test" />
+        <module name="IMDB Automation" />
+        <module name="KamelPay Final Automation" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>
