@@ -1,7 +1,7 @@
 @RatingsFeature
 Feature: Ratings Tests
 
-  @TC10 @RatingsTest
+  @TC13 @RatingsTest
   Scenario: User searches for a valid movie and checks its ratings
     #Only valid movie names will work for this test
     Given User searches for the movie "The Dark Knight"

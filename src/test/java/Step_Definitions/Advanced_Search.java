@@ -7,6 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -18,6 +19,7 @@ import java.awt.event.KeyEvent;
 
 import static Hooks.Base_Class.driver;
 import static Pages.Android.Advanced_Search_Page.*;
+import static Utils.Scroll.ScrollVertical;
 
 public class Advanced_Search {
 
@@ -189,5 +191,91 @@ public class Advanced_Search {
         //assertion
         String text_to_assert = Advanced_Search_Page.get_feature_film_assert_css().getText();
         Assert.assertTrue(text_to_assert.contains("Rating between "+min_rating+" and "+max_rating));
+    }
+
+    @When("User scrolls down to ratings field")
+    public void userScrollsDownToRatingsField() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(title_field_css)));
+        ScrollVertical(get_min_rating_xpath());
+    }
+
+    @When("User scrolls down to number of votes field")
+    public void userScrollsDownToNumberOfVotesField() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(title_field_css)));
+        ScrollVertical(get_min_votes_field_css());
+    }
+
+    @And("User enters number of minimum votes {string}")
+    public void userEntersNumberOfMinimumVotes(String min_vote) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(min_votes_field_css)));
+        get_min_votes_field_css().sendKeys(min_vote);
+    }
+
+    @When("User enters maximum number of votes {string}")
+    public void userEntersMaximumNumberOfVotes(String max_vote) {
+        get_max_votes_field_css().sendKeys(max_vote);
+    }
+
+    @Then("User should be able to see the movies for votes between {string} and {string}")
+    public void userShouldBeAbleToSeeTheMoviesForVotesBetweenAnd(String mn_vote, String mx_vote) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(feature_film_assert_css)));
+
+        //assertion
+        String text_to_assert = Advanced_Search_Page.get_feature_film_assert_css().getText();
+        Assert.assertTrue(text_to_assert.contains("Rating Count between "+mn_vote+" and "+mx_vote));
+
+    }
+
+    @When("User scrolls down to the genres field")
+    public void userScrollsDownToTheGenresField() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(title_field_css)));
+        ScrollVertical(get_wait_genres_xpath());
+    }
+
+    @And("User searches for their genre {string}")
+    public void userSearchesForTheirGenre(String gnre_name) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(wait_genres_xpath)));
+        Advanced_Search_Page.get_dynamic_genre_xpath(gnre_name).click();
+    }
+
+    @When("User scrolls down to the search button")
+    public void userScrollsDownToTheSearchButton() {
+        ScrollVertical(get_search_button_xpath());
+    }
+
+    @And("clicks on the search button")
+    public void clicksOnTheSearchButton() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(search_button_xpath)));
+        Advanced_Search_Page.get_search_button_xpath().click();
+    }
+
+    @Then("User should be able to see all the {string} movies")
+    public void userShouldBeAbleToSeeAllTheMovies(String genre_name) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(feature_film_assert_css)));
+
+        //assertion
+        String text_to_assert = Advanced_Search_Page.get_feature_film_assert_css().getText();
+        Assert.assertTrue(text_to_assert.contains(genre_name+" Movies and TV Shows"));
+    }
+
+    @When("User scrolls down till country list")
+    public void userScrollsDownTillCountryList() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(title_field_css)));
+        ScrollVertical(get_country_list_xpath());
+    }
+
+    @And("User selects the country {string}")
+    public void userSelectsTheCountry(String cnty) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(country_list_xpath)));
+        get_dynamic_country_search_xpath(cnty).click();
+    }
+
+    @Then("User should be able to see all the movies of the country {string}")
+    public void userShouldBeAbleToSeeAllTheMoviesOfTheCountry(String country_name) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(feature_film_assert_css)));
+
+        //assertion
+        String text_to_assert = Advanced_Search_Page.get_feature_film_assert_css().getText();
+        Assert.assertTrue(text_to_assert.contains(country_name));
     }
 }
