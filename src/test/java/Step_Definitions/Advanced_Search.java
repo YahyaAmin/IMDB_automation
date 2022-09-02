@@ -1,15 +1,12 @@
-package Step_Definitions;
+package step_definitions;
 
-import Pages.Android.Advanced_Search_Page;
-import Pages.Android.Login_Page;
+import pages.Advanced_Search_Page;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
@@ -17,24 +14,18 @@ import org.testng.asserts.SoftAssert;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-import static Hooks.Base_Class.driver;
-import static Pages.Android.Advanced_Search_Page.*;
-import static Utils.Scroll.ScrollVertical;
+import static hooks.Base_Class.driver;
+import static pages.Advanced_Search_Page.*;
+import static utils.Scroll.ScrollVertical;
 
 public class Advanced_Search {
-
-
     public WebDriverWait wait = new WebDriverWait(driver, 30);
-    //create a soft-assertion object
-    SoftAssert softAssert = new SoftAssert();
-
 
     @Given("User navigates to advanced search page")
     public void userNavigatesToAdvancedSearchPage() {
         driver.navigate().to("https://www.imdb.com/search/title/");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(title_field_css)));
     }
-
 
     @And("User enters the title of movie {string}")
     public void userEntersTheTitleOfMovie(String movie_name) {
@@ -45,35 +36,26 @@ public class Advanced_Search {
     @When("User clicks Enter key")
     public void userClicksEnterKey() throws AWTException, InterruptedException {
         Advanced_Search_Page.get_title_field_css().click();
-        Thread.sleep(1000);
         //steps to handle popup
         Robot robot = new Robot();
         robot.keyPress(KeyEvent.VK_ENTER);
-
     }
-
 
     @Then("User should see the relevant movie results for {string}")
     public void userShouldSeeTheRelevantMovieResultsFor(String movie) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(movie_name_xpath(movie))));
-
-        //assertion on the first search result. Title should contain the search result
         String title = get_movie_name_xpath(movie).getText();
         Assert.assertTrue(title.contains(movie));
     }
-
     @Then("User should see no results")
     public void userShouldSeeNoResults() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(result_title_css)));
-
-        //assert text that no results are available for the given search
         String result_text = get_result_title_css().getText();
         Assert.assertEquals(result_text, "No results.");
     }
 
     @And("User clicks on feature film checkbox")
-    public void
-    userClicksOnFeatureFilmCheckbox() {
+    public void userClicksOnFeatureFilmCheckbox() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(feature_film_checkbox_xpath)));
         Advanced_Search_Page.get_feature_film_checkbox_xpath().click();
     }
@@ -106,7 +88,6 @@ public class Advanced_Search {
     public void userClicksOnTvSeriesCheckbox() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(title_field_css)));
         Advanced_Search_Page.get_tv_series_checkbox_css().click();
-
     }
 
     @Then("User should be able to see all the tv-series")
@@ -157,15 +138,7 @@ public class Advanced_Search {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(min_option_xpath(min_rating))));
         Advanced_Search_Page.get_min_option_xpath(min_rating).click();
         Advanced_Search_Page.get_min_option_xpath(min_rating).click();
-
-
         Advanced_Search_Page.get_min_rating_xpath().click();
-
-
-        //Select se = new Select(driver.findElement(By.xpath(min_rating_xpath)));
-        //Select by visible text
-        //se.selectByVisibleText(min_rating);
-
     }
 
     @When("User enters a max rating of {string}")
@@ -176,18 +149,13 @@ public class Advanced_Search {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(max_option_xpath(max_rating))));
         Advanced_Search_Page.get_max_option_xpath(max_rating).click();
         Advanced_Search_Page.get_max_option_xpath(max_rating).click();
-
         Advanced_Search_Page.get_max_rating_xpath().click();
-
-
-
     }
 
 
     @Then("User should be able to see the list of movies for that rating between {string} and {string}")
     public void userShouldBeAbleToSeeTheListOfMoviesForThatRatingBetweenAnd(String min_rating, String max_rating) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(feature_film_assert_css)));
-
         //assertion
         String text_to_assert = Advanced_Search_Page.get_feature_film_assert_css().getText();
         Assert.assertTrue(text_to_assert.contains("Rating between "+min_rating+" and "+max_rating));
@@ -223,7 +191,6 @@ public class Advanced_Search {
         //assertion
         String text_to_assert = Advanced_Search_Page.get_feature_film_assert_css().getText();
         Assert.assertTrue(text_to_assert.contains("Rating Count between "+mn_vote+" and "+mx_vote));
-
     }
 
     @When("User scrolls down to the genres field")
@@ -233,9 +200,12 @@ public class Advanced_Search {
     }
 
     @And("User searches for their genre {string}")
-    public void userSearchesForTheirGenre(String gnre_name) {
+    public void userSearchesForTheirGenre(String genre_name) {
+       genre_name= genre_name.toLowerCase();
+       genre_name = genre_name.replace("-", "_");
+        System.out.println("String val" + genre_name);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(wait_genres_xpath)));
-        Advanced_Search_Page.get_dynamic_genre_xpath(gnre_name).click();
+        Advanced_Search_Page.get_dynamic_genre_xpath(genre_name).click();
     }
 
     @When("User scrolls down to the search button")
@@ -243,7 +213,7 @@ public class Advanced_Search {
         ScrollVertical(get_search_button_xpath());
     }
 
-    @And("clicks on the search button")
+    @And("User clicks on the search button")
     public void clicksOnTheSearchButton() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(search_button_xpath)));
         Advanced_Search_Page.get_search_button_xpath().click();
@@ -265,9 +235,9 @@ public class Advanced_Search {
     }
 
     @And("User selects the country {string}")
-    public void userSelectsTheCountry(String cnty) {
+    public void userSelectsTheCountry(String country) throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(country_list_xpath)));
-        get_dynamic_country_search_xpath(cnty).click();
+        get_dynamic_country_search_xpath(country).click();
     }
 
     @Then("User should be able to see all the movies of the country {string}")

@@ -1,6 +1,6 @@
-package Step_Definitions;
+package step_definitions;
 
-import Pages.Android.Ratings_Page;
+import pages.Ratings_Page;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,27 +9,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
-import java.sql.SQLOutput;
-
-import static Pages.Android.Ratings_Page.*;
-
-import static Hooks.Base_Class.driver;
+import static pages.Ratings_Page.*;
+import static hooks.Base_Class.driver;
 
 public class Ratings_Steps {
-
-
     public WebDriverWait wait = new WebDriverWait(driver, 30);
-
-
-
 
     @And("User clicks on the first movie")
     public void userClicksOnTheFirstMovie(){
-        //click on movie steps
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(first_searched_movie_xpath)));
         Ratings_Page.get_first_searched_movie_xpath().click();
-
     }
 
     @Given("User searches for the movie {string}")
@@ -46,22 +35,16 @@ public class Ratings_Steps {
 
     @Then("User should see the ratings for all demographics")
     public void userShouldSeeTheRatingsForAllDemographics() {
+        String rating_of_each_element;
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(allages_all_css)));
 
-        //Assert that all other demographic elements are not null and are displayed
-        //Iterate one by one to assert all items in list
-
         for(int i=0; i<get_demographics_object_css().size(); i++){
-
-            Assert.assertTrue(get_demographics_object_css().get(i).isDisplayed()); //All elements in this list are displayed
+            //All elements in this list are displayed
+            Assert.assertTrue(get_demographics_object_css().get(i).isDisplayed());
 
             //Assertion to check that all elements have rating values which are not null
-            String rating_of_each_element = get_demographics_object_css().get(i).getText();
+            rating_of_each_element = get_demographics_object_css().get(i).getText();
             Assert.assertNotNull(rating_of_each_element);
-
         }
-
-
-
     }
 }

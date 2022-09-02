@@ -1,6 +1,6 @@
-package Step_Definitions;
+package step_definitions;
 
-import Pages.Android.Login_Page;
+import pages.Login_Page;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,17 +9,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.asserts.SoftAssert;
-
-import static Hooks.Base_Class.driver;
-import static Pages.Android.Login_Page.*;
+import static hooks.Base_Class.driver;
+import static pages.Login_Page.*;
 
 public class Login_Steps {
 
-
     public WebDriverWait wait = new WebDriverWait(driver, 30);
-    //create a soft-assertion object
-    SoftAssert softAssert = new SoftAssert();
 
     @Given("User clicks on the sign in button")
     public void userClicksOnTheSignInButton() {
@@ -53,14 +48,11 @@ public class Login_Steps {
         Login_Page.get_sign_in_button_css().click();
     }
 
-
     @Then("User should successfully sign in and see their username {string} at the top right")
     public void userShouldSuccessfullySignInAndSeeTheirUsernameAtTheTopRight(String username) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(logged_in_user_menu_xpath)));
         String user = Login_Page.get_logged_in_user_menu_xpath().getText();
-        Assert.assertEquals(user, username); //assert that the user is logged in and can see their name at the top right
+        //assert that the user is logged in and can see their name at the top right
+        Assert.assertEquals(user, username);
     }
-
-
-
 }

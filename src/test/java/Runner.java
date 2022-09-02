@@ -5,18 +5,15 @@ import org.junit.runner.RunWith;
 
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "src/test/resources/Features",            //@Cucumber.Options(features={"login.feature", "smoketest.feature"}) for priority
+@CucumberOptions(features = "src/test/resources/Features/",
         monochrome = true,
-        glue = {"Step_Definitions","Hooks"},
+        glue = {"step_definitions", "hooks"},
         plugin = {"pretty", "html:target/Reports/HtmlReport/report.html",
                   "pretty", "json:target/Reports/JSONReport/report.json",
                   "pretty", "junit:target/Reports/XMLReports/report.xml",
                   "json:target/cucumber.json" },
-        tags = "@SearchTests"
+        tags = "@SearchTests or @LoginTest or @RatingsTest or @WatchlistTest"
 )
-
-//Example of logical tags:     tags = "@smoketest or @regression"
-
 
 public class Runner  {
 
