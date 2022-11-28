@@ -1,6 +1,6 @@
-package step_definitions;
+package Step_Definitions;
 
-import pages.Ratings_Page;
+import Pages.Ratings_Page;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,8 +9,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import static pages.Ratings_Page.*;
-import static hooks.Base_Class.driver;
+import static Pages.Ratings_Page.*;
+import static Hooks.Base_Class.driver;
 
 public class Ratings_Steps {
     public WebDriverWait wait = new WebDriverWait(driver, 30);

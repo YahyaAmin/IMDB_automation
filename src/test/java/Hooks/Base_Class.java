@@ -1,7 +1,8 @@
-package hooks;
+package Hooks;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import java.net.URL;
@@ -13,7 +14,7 @@ public class Base_Class {
     @Before
     public void setup() {
         try {
-            System.setProperty("webdriver.chrome.driver", "apps/chromedriver.exe");
+            WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
             driver.manage().window().maximize();
             URL url = new URL("https://www.imdb.com/");

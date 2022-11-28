@@ -1,6 +1,6 @@
-package step_definitions;
+package Step_Definitions;
 
-import pages.Advanced_Search_Page;
+import Pages.Advanced_Search_Page;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -14,9 +14,9 @@ import org.testng.asserts.SoftAssert;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-import static hooks.Base_Class.driver;
-import static pages.Advanced_Search_Page.*;
-import static utils.Scroll.ScrollVertical;
+import static Hooks.Base_Class.driver;
+import static Pages.Advanced_Search_Page.*;
+import static Utils.Scroll.ScrollVertical;
 
 public class Advanced_Search {
     public WebDriverWait wait = new WebDriverWait(driver, 30);

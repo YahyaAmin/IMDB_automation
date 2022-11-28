@@ -2,7 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import static hooks.Base_Class.driver;
+import static Hooks.Base_Class.driver;
 
 public class Login_Page {
     public static String sign_in_css = ".navbar__user";

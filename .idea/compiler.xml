@@ -11,6 +11,7 @@
         <module name="KAMELPAY_FINAL" />
         <module name="Hrcms" />
         <module name="Test" />
+        <module name="IMDB_automation" />
         <module name="IMDB Automation" />
         <module name="KamelPay Final Automation" />
       </profile>

@@ -1,9 +1,9 @@
-package utils;
+package Utils;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
-import static hooks.Base_Class.driver;
+import static Hooks.Base_Class.driver;
 
 
 public class Scroll

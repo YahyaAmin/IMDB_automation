@@ -1,4 +1,4 @@
-package step_definitions;
+package Step_Definitions;
 
 import pages.Login_Page;
 import io.cucumber.java.en.And;
@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import static hooks.Base_Class.driver;
+import static Hooks.Base_Class.driver;
 import static pages.Login_Page.*;
 
 public class Login_Steps {

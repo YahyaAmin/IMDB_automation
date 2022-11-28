@@ -1,9 +1,9 @@
-package pages;
+package Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import java.util.List;
-import static hooks.Base_Class.driver;
+import static Hooks.Base_Class.driver;
 
 public class Ratings_Page {
     public static String search_movie_field_css = "#suggestion-search";

@@ -1,9 +1,9 @@
-package pages;
+package Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import static hooks.Base_Class.driver;
+import static Hooks.Base_Class.driver;
 
 public class Advanced_Search_Page {
     public static String title_field_css = "input[name='title']";

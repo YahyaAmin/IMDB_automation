@@ -1,6 +1,6 @@
-package step_definitions;
+package Step_Definitions;
 
-import pages.WatchList_Page;
+import Pages.WatchList_Page;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -13,8 +13,8 @@ import org.testng.Assert;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-import static hooks.Base_Class.driver;
-import static pages.WatchList_Page.*;
+import static Hooks.Base_Class.driver;
+import static Pages.WatchList_Page.*;
 
 public class WatchList {
 
