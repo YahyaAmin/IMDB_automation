@@ -15,6 +15,6 @@ import org.junit.runner.RunWith;
         tags = "@SearchTests or @LoginTest or @RatingsTest or @WatchlistTest"
 )
 
-public class Runner  {
+public class TestRunner {
 
 }
