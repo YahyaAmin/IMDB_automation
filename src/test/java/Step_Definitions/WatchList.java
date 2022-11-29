@@ -15,10 +15,11 @@ import java.awt.event.KeyEvent;
 
 import static Hooks.Base_Class.driver;
 import static Pages.WatchList_Page.*;
+import static Step_Definitions.Advanced_Search.wait;
 
 public class WatchList {
 
-    public WebDriverWait wait = new WebDriverWait(driver, 30);
+    //public WebDriverWait wait = new WebDriverWait(driver, 30);
 
     @Given("User clicks on the watchlist button")
     public void userClicksOnTheWatchlistButton() {

@@ -13,13 +13,14 @@ import org.testng.asserts.SoftAssert;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.time.Duration;
 
 import static Hooks.Base_Class.driver;
 import static Pages.Advanced_Search_Page.*;
 import static Utils.Scroll.ScrollVertical;
 
 public class Advanced_Search {
-    public WebDriverWait wait = new WebDriverWait(driver, 30);
+    public static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
     @Given("User navigates to advanced search page")
     public void userNavigatesToAdvancedSearchPage() {

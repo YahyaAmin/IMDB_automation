@@ -10,11 +10,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import static Hooks.Base_Class.driver;
+import static Step_Definitions.Advanced_Search.wait;
 import static pages.Login_Page.*;
 
 public class Login_Steps {
 
-    public WebDriverWait wait = new WebDriverWait(driver, 30);
+    //public WebDriverWait wait = new WebDriverWait(driver, 30);
 
     @Given("User clicks on the sign in button")
     public void userClicksOnTheSignInButton() {

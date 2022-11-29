@@ -11,9 +11,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import static Pages.Ratings_Page.*;
 import static Hooks.Base_Class.driver;
+import static Step_Definitions.Advanced_Search.wait;
 
 public class Ratings_Steps {
-    public WebDriverWait wait = new WebDriverWait(driver, 30);
+    //public WebDriverWait wait = new WebDriverWait(driver, 30);
 
     @And("User clicks on the first movie")
     public void userClicksOnTheFirstMovie(){
